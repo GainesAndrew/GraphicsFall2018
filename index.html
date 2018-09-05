@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Cube</title>
+
+        <style>
+            body {
+                margin:0;
+                overflow: hidden;
+            }
+            
+            </style>
+            </head>
+
+            <body>
+                <canvas id="Canvas"></canvas>
+                <script src="three.js"></script>
+
+                <script>
+                    var renderer, camera, scene, light, light1, geometry, material, mesh;
+
+                    //renderer, choosing web gl renderer as engine
+                    renderer = new THREE.WebGLRenderer({canvas: //want renderer on canvas
+                     document.getElementById('Canvas'), antialias: true});
+                     renderer.setClearColor(0xc0c0c0);
+                     renderer.setPixelRatio(window.devicePixelRatio); //setting for browser window
+                     renderer.setSize(window.innerWidth, window.innerHeight);
+
+                    //camera bigger the number, smaller the cube 
+                    camera = new THREE.PerspectiveCamera(50, window.innerWidth /
+                    window.innerHeight, 0.1, 3000);
+
+                    //scene
+                    scene = new THREE.Scene();
+
+                    //lights
+                    light = new THREE.AmbientLight(0xfffff0, 0.5);
+                    light1 = new THREE.PointLight(0xfffff0, 0.5);
+                    scene.add(light, light1);
+
+                    //object
+                    geometry = new THREE.BoxGeometry(280,280,280);
+                    material = new THREE.MeshNormalMaterial();
+
+                    var cubeMaterials = [ 
+                    new THREE.MeshBasicMaterial({color:0xff0000, transparent:true, opacity:0.5, side: THREE.DoubleSide}),
+                    new THREE.MeshBasicMaterial({color:0x3381ff, transparent:true, opacity:0.5, side: THREE.DoubleSide}), 
+                    new THREE.MeshBasicMaterial({color:0x008000, transparent:true, opacity:0.5, side: THREE.DoubleSide}),
+                    new THREE.MeshBasicMaterial({color:0xff0000, transparent:true, opacity:0.5, side: THREE.DoubleSide}), 
+                    new THREE.MeshBasicMaterial({color:0x3381ff, transparent:true, opacity:0.5, side: THREE.DoubleSide}), 
+                    new THREE.MeshBasicMaterial({color:0x008000, transparent:true, opacity:0.5, side: THREE.DoubleSide}), 
+                    ]; 
+                    
+                    // Create a MeshFaceMaterial, which allows the cube to have different materials on each face 
+                    var cubeMaterial = new THREE.MeshFaceMaterial(cubeMaterials); 
+                    //var cube = new THREE.Mesh(geometry, cubeMaterial);
+                    //scene.add( cube );
+                    var x = 0;
+                    var y = 0;
+                          
+                    mesh = new THREE.Mesh(geometry, cubeMaterials);
+                    mesh.position.set(x,y, -1000);
+                   
+                  //requestAnimationFrame(render);
+                    scene.add(mesh);     
+                    
+                  // geometry = new THREE.BoxGeometry(20,100,100);
+                  // mesh = new THREE.Mesh(geometry, cubeMaterials);
+                  //  mesh.position.set(0,0, -1000);
+                  //  scene.add(mesh);
+                  //redner loop (continues to loop)
+                    var a =.008;
+                    var b =.008;
+                    requestAnimationFrame(render);
+                    
+                    function render() {
+                        
+                        mesh.rotation.x+= a;
+                        mesh.rotation.y+= b;
+                        renderer.render(scene, camera);
+                        requestAnimationFrame(render);
+                        a+=.0003;
+                        b+=.0003;                        
+                    }
+                    
+                </script>
+                </body>
+
+                </html>
+
