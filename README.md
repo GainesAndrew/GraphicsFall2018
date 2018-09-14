@@ -1,4 +1,8 @@
-# ComputerGraphicsFall2018
-# Class: Computer Graphics. Teacher: Dr. Warren Macevoy. Semester: Fall 2018
-# homework1: https://github.com/GainesAndrew/GraphicsFall2018/tree/homework-1
+ComputerGraphicsFall2018
+
+Class: Computer Graphics. Teacher: Dr. Warren Macevoy. Semester: Fall 2018
+
+Homework: Create something in openScad
+
+About hw: I created something to work on my geometry precision using spheres and cylinders.
 
